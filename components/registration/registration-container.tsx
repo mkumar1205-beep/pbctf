@@ -60,7 +60,7 @@ export function RegistrationContainer({
             github: "",
             linkedin: "",
             ctf: "",
-            referralCode: "",
+            portfolio: "",
             ...parsed.registerData,
           };
         }
@@ -82,7 +82,7 @@ export function RegistrationContainer({
       github: "",
       linkedin: "",
       ctf: "",
-      referralCode: "",
+      portfolio: "",
     };
   };
 
@@ -179,7 +179,7 @@ export function RegistrationContainer({
       phone: "+919876543210",
       age: "22",
       organisation: "Test University/Company",
-      bio: "I'm a passionate developer interested in AI, web development, and hackathons. Looking forward to participating in Zenith!",
+      bio: "I'm a passionate developer interested in AI, web development, and hackathons. Looking forward to participating in PBCTF 5.0!",
       github: "https://github.com/testuser",
       linkedin: "https://linkedin.com/in/testuser",
       portfolio: "https://testuser.dev",
@@ -500,8 +500,6 @@ export function RegistrationContainer({
             fieldErrors.discord_username = 'This Discord username is already registered';
           } else if (errorMsg.includes('phone number already exists') || errorMsg.includes('phone number is already')) {
             fieldErrors.phone = 'This phone number is already registered';
-          } else if (errorMsg.includes('invalid ctf') || errorMsg.includes('ctf profile')) {
-            fieldErrors.ctf = 'Invalid CTF profile URL';
           } else if (errorMsg.includes('invalid portfolio') || errorMsg.includes('portfolio link')) {
             fieldErrors.portfolio = 'Invalid Portfolio URL';
           } else if (errorMsg.includes('invalid github') || errorMsg.includes('github profile')) {
@@ -897,7 +895,7 @@ export function RegistrationContainer({
             onBlur={handleFieldBlur("confirmPassword")}
             error={errors.confirmPassword}
           />
-          <div className="grid grid-cols-2 gap-[16px]">
+          <div className="flex flex-col gap-[16px]">
             <FormInput
               label="Discord Username"
               placeholder="username"
@@ -1060,17 +1058,6 @@ export function RegistrationContainer({
                 onBlur={handleFieldBlur('ctf')}
                 error={errors.ctf}
               />
-              <FormInput
-                label="Referral Code"
-                placeholder="Enter referral code (if any)"
-                value={registerData.referralCode}
-                onChange={(e) =>
-                  setRegisterData({
-                    ...registerData,
-                    referralCode: e.target.value,
-                  })
-                }
-              />
             </div>
             {/* Code of Conduct Section */}
             <div className="flex flex-col gap-[12px]">
@@ -1124,6 +1111,7 @@ export function RegistrationContainer({
                 </span>
               )}
             </div>
+          </div>
           <Button
             type="submit"
             variant="primary"
@@ -1145,8 +1133,6 @@ export function RegistrationContainer({
           style={{ fontFamily: "var(--font-body)" }}
         >
           <div className="flex flex-col gap-[24px] text-white" style={{ fontFamily: 'var(--font-body)' }}>
-         
-
             <div className="flex flex-col gap-[16px]">
               <div>
                 <h3 className="text-[18px] font-semibold mb-[8px]" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -1233,133 +1219,6 @@ export function RegistrationContainer({
               </div>
             </div>
 
-            <div>
-              <h3
-                className="text-[18px] font-semibold mb-[8px]"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                Expected Behavior
-              </h3>
-              <p className="text-[14px] leading-[22px] opacity-90 mb-[8px]">
-                Participants must:
-              </p>
-              <ul className="list-disc list-inside space-y-[4px] text-[14px] leading-[22px] opacity-90 ml-[8px]">
-                <li>Treat others with respect and professionalism</li>
-                <li>
-                  Communicate constructively and collaborate in good faith
-                </li>
-                <li>Compete fairly and honestly</li>
-                <li>Respect diverse perspectives and backgrounds</li>
-                <li>Follow all competition rules and guidelines</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3
-                className="text-[18px] font-semibold mb-[8px]"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                Prohibited Conduct
-              </h3>
-              <p className="text-[14px] leading-[22px] opacity-90 mb-[8px]">
-                The following will not be tolerated:
-              </p>
-              <ul className="list-disc list-inside space-y-[4px] text-[14px] leading-[22px] opacity-90 ml-[8px]">
-                <li>Harassment, discrimination, or offensive behavior</li>
-                <li>Plagiarism or misrepresentation of work</li>
-                <li>Cheating, sabotage, or misuse of platforms</li>
-                <li>Disruptive or unethical conduct in any form</li>
-              </ul>
-              <p className="text-[14px] leading-[22px] opacity-90 mt-[8px]">
-                This applies across all competition-related spaces and
-                platforms.
-              </p>
-            </div>
-
-            <div>
-              <h3
-                className="text-[18px] font-semibold mb-[8px]"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                Intellectual Property
-              </h3>
-              <p className="text-[14px] leading-[22px] opacity-90 mb-[8px]">
-                By participating, you agree that:
-              </p>
-              <ul className="list-disc list-inside space-y-[4px] text-[14px] leading-[22px] opacity-90 ml-[8px]">
-                <li>
-                  All code, submissions, designs, documentation, and
-                  intellectual property created during the competition are the
-                  exclusive property of FinalRound AI.
-                </li>
-                <li>
-                  Participants may reference their work for non-commercial
-                  portfolio or resume use unless otherwise stated.
-                </li>
-                <li>
-                  FinalRound AI reserves the right to use, modify, and
-                  commercialize submissions.
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3
-                className="text-[18px] font-semibold mb-[8px]"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                Original Work & AI Usage
-              </h3>
-              <ul className="list-disc list-inside space-y-[4px] text-[14px] leading-[22px] opacity-90 ml-[8px]">
-                <li>All submissions must be created during the competition</li>
-                <li>
-                  Use of AI tools is allowed but must be ethical and
-                  license-compliant
-                </li>
-                <li>
-                  Any third-party tools or APIs must follow their respective
-                  terms
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3
-                className="text-[18px] font-semibold mb-[8px]"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                Enforcement
-              </h3>
-              <ul className="list-disc list-inside space-y-[4px] text-[14px] leading-[22px] opacity-90 ml-[8px]">
-                <li>
-                  Point Blank reserves the right to take action for violations,
-                  including warnings, disqualification, or removal from the
-                  event.
-                </li>
-                <li>Reports of misconduct will be handled confidentially.</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3
-                className="text-[18px] font-semibold mb-[8px]"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                Final Note
-              </h3>
-              <p className="text-[14px] leading-[22px] opacity-90">
-                This CTF is about solving security challenges and capturing
-                flags.
-              </p>
-              <p className="text-[14px] leading-[22px] opacity-90 mt-[8px]">
-                Bring curiosity, build responsibly, and respect the community.
-              </p>
-              <p className="text-[14px] leading-[22px] opacity-90 mt-[12px] text-right">
-                — Point Blank
-              </p>
-            </div>
-          </div>
-
           <div className="flex justify-end pt-[16px] border-t border-[rgba(255,255,255,0.2)]">
             <Button
               onClick={() => {
@@ -1377,7 +1236,8 @@ export function RegistrationContainer({
             </Button>
           </div>
         </div>
+      </div>
       </Modal>
-    </div>
+    </div> 
   );
   }
